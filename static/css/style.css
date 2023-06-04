@@ -1,0 +1,94 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    display: grid;
+    grid-template-rows: 6fr 1fr;
+    width: 100%;
+    height: 100vh;
+    background-color: #1A1A1A;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+    font-weight: bold;
+    font-family: Cairo,sans-serif;
+    color: #fff;
+    text-shadow: 0px 3px 21px #ffffff50;
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Cairo,sans-serif;
+}
+
+.main h1 {
+    color: #fff;
+    font-size: 3rem;
+    text-align: center;
+}
+
+.main {
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.main .in {
+    width: 100%;
+    display: flex;
+    height: auto;
+    justify-content: flex-end;
+}
+
+.main .in input {
+    width: 100%;
+    direction: rtl;
+    font-size: 1.2rem;
+    padding: 1rem 0.5rem;
+    background-color: #2E2E2E;
+    border: none;
+    outline: none;
+    font-family: Cairo,sans-serif;
+    color: #ccc;
+}
+
+
+.main .btns {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.main .btns button {
+    font-family: Cairo,sans-serif;
+    background-color: #39C41759;
+    border: none;
+    outline: none;
+    color: #fff;
+    padding: .9rem 1.2rem;
+    cursor: pointer;
+}
+
+.main .btns a {
+    background-color: #25292459;
+    color: #fff;
+    padding: .9rem 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> الرئيسية </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    
+    <div class="up">
+
+        <a href="{% url 'upload' %}"><i class="fas fa-upload"></i></a>
+        <a href="{% url 'home' %}"><i class="fas fa-home"></i></a>
+        <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+
+    </div>
+    
+    <div class="container">
+
+        <div class="prev">
+            <i class="fas fa-arrow-left" id="prev"></i>
+        </div>
+        
+        <div class="screen">
+            <video src="" class=""></video>
+            <i id="state" class="fas fa-play"></i>
+            <i id="like" class="fas fa-heart"></i>
+        </div>
+
+
+        <div class="next">
+            <i class="fas fa-arrow-right" id="next"></i>
+        </div>
+
+    </div>
+
+    
+    <footer>
+        <p>تم التطوير والانشاء بواسطة رضوان جابر حجازي</p>
+    </footer>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    
+    <script>
+        
+        var videos_list = [] ;
+        let current_video = 0;
+        var video = document.querySelector('video');
+
+        // get videos
+        function GetVideos (){
+            $.ajax({
+                method:"GET",
+                url:"{% url 'videos' %}",
+                success:function(response){
+                    for(var i=0;i<response.length;i++){
+                        
+                        var video_id = response[i]['id'];
+                        var video_path = response[i]['video'];
+                        
+                        videos_list.push(
+                            {'id':video_id,'path':video_path}
+                        )
+
+                    }
+
+                    video.src = videos_list[current_video]['path']
+                    video.id = videos_list[current_video]['id']
+
+                }
+            })
+
+        }
+
+        GetVideos()
+
+        var state = 'pause';
+        var state_ele = document.querySelector('#state')
+
+
+        // like video
+        var like_btn = document.querySelector('#like');
+
+        like_btn.addEventListener('click',function(){
+            
+            this.classList.add('like')
+            
+            $.ajax({
+                method : 'POST',
+                url:'{% url "like" %}',
+                data:{
+                    'id' : video.id,
+                },success:function(res){
+                    console.log(res)
+                }
+            })
+
+        })
+
+
+
+        // next and prev
+
+
+        
+
+        var next = document.querySelector('.next i');
+        var prev = document.querySelector('.prev i');
+        
+        
+        
+
+        
+
+        
+
+        // play video
+        video.addEventListener('click',function(){
+            
+            state_ele.classList.toggle('view')
+            this.classList.toggle('off')
+            
+            if (state == 'pause') {
+                this.play()
+                state = 'play'
+            }else{
+                this.pause()
+                state = 'pause'
+            }
+        })
+
+
+        // next action
+        next.addEventListener('click',function(){
+            like_btn.classList.remove('like')
+            current_video++
+            if (current_video < videos_list.length - 1){
+                video.src = videos_list[current_video]['path'];
+                video.id = videos_list[current_video]['id'];
+                video.play()
+            }else{
+
+                current_video = videos_list.length - 1 
+                // ajax function here for get more videos
+                GetVideos()
+            }
+        })
+
+
+        // previous action
+        prev.addEventListener('click',function(){
+            current_video--
+            if (current_video >= 0){
+                video.src = videos_list[current_video]['path'];
+                video.id = videos_list[current_video]['id'];
+                video.play()
+            }else{
+                current_video = 0
+            }
+
+        })
+
+
+
+    </script>
+</body>
+</html>

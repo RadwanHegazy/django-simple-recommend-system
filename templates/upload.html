@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رفع فيديو </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}">
+</head>
+<body>
+
+
+    <div class="up">
+
+        <a href="{% url 'upload' %}"><i class="fas fa-upload"></i></a>
+        <a href="{% url 'home' %}"><i class="fas fa-home"></i></a>
+        <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="main">
+
+            <h1>رفع فيديو </h1>
+
+                <form class="up-btns" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="submit">رفع الفيديو</button>
+                    <button id="choose_video" type="button">اختر فيديو</button>
+                    <input type="file" hidden id="video" name="video">
+                    <input type="text" name="genres" hidden id="info" value="">
+                </form>
+
+
+            <div class="type">
+
+                <div class="in">
+                    <input type="text" placeholder="النوع">
+                    <button class="add">اضافة</button>
+                </div>
+
+                <div class="data"></div>
+
+            </div>
+            
+
+
+
+        </div>
+        
+        <div class="vid">
+            <video src=""></video>
+        </div>
+
+    </div>
+
+
+    <footer>
+        <p>تم التطوير والانشاء بواسطة رضوان جابر حجازي</p>
+    </footer>
+
+
+
+    <script>
+
+        if ('{{msg}}'){
+            alert('{{msg}}')
+        }
+        
+        var add_btns = document.querySelector('.add');
+        var type = document.querySelector('.in input');
+        var genre_container = document.querySelector('.data');
+        var video_info = document.getElementById('info');
+
+
+        // add genre 
+        add_btns.addEventListener('click',function(){
+
+            video_info.value +=  type.value + '@' ;
+            var genre_ele = `<div class='genre'>${type.value}</div>`;
+            genre_container.innerHTML += genre_ele;
+            type.value = '';
+            type.focus()
+
+        })
+
+        
+
+        // add video
+        
+        var video = document.querySelector('#video');
+        var video_btn = document.querySelector('#choose_video');
+        var main_video = document.querySelector('video')
+
+        video_btn.addEventListener('click',function(){
+
+            video.click()
+
+        })
+
+
+        video.addEventListener('change',function(e){
+            
+            var video_path = URL.createObjectURL(e.target.files[0]);
+            main_video.src = video_path;
+            main_video.controls = true;
+
+        })
+        
+    </script>
+
+</body>
+</html>

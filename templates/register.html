@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> انشاء حساب </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+
+
+    <form class="container" method="POST">
+        {% csrf_token %}
+        
+        <div class="main">
+            <h1>انشاء حساب</h1>
+    
+            <div class="in">
+                <input type="text" name="username" placeholder="اسم المستخدم">
+            </div>
+    
+            <div class="in">
+                <input type="email" name="email" placeholder="البريد الالكتروني">
+            </div>
+    
+            <div class="in">
+                <input type="password" name="password" placeholder="كلمة المرور">
+            </div>
+
+            <div class="btns">
+                <a href="{% url 'login' %}">لديك حساب بالفعل</a>
+                <button type="submit">انشاء حساب</button>
+            </div>
+
+        </div>
+
+
+    </form>
+
+    <footer>
+        <p>تم التطوير والانشاء بواسطة رضوان جابر حجازي</p>
+    </footer>
+
+
+</body> 
+</html>

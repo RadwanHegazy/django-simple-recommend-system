@@ -1,0 +1,123 @@
+body {
+    grid-template-rows: 1fr 7fr 1fr;
+}
+
+
+.up {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    padding-right: 10rem;
+}
+
+.up a{
+    text-decoration: none;
+    font-size: 1.3rem;
+    padding: 1rem;
+    border-radius: 50%;
+    color: #363434;
+    background-color: #010101;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.container * {
+    height: 100%;
+}
+
+.container .screen {
+    background-color: #010101;
+    border-radius: 8px;
+    box-shadow: 0px 3px 21px #f5f5f510;
+    overflow: hidden;
+    position: relative;
+}
+
+.screen video {
+    border: 2px solid red;
+    max-width: 100%;
+    object-fit: cover;
+    scale: 1.5;
+    transition: all 0.3s ease;
+    filter: brightness(0.5);
+}
+
+.screen video.off{
+    filter: brightness(1);
+}
+
+.screen #state {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.5rem;
+    background-color: #ffffff10;
+    border-radius: 50%;
+    opacity: 0.5;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.screen #state.view{
+    display: none;
+}
+
+#like {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1rem;
+    background-color: #ffffff10;
+    border-radius: 50%;
+    opacity: 1;
+    z-index: 1;
+    top: 90%;
+    left: 90%;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#like.like {
+    color: crimson;
+    background-color: #cf0b0b10;
+}
+
+
+
+.container .prev, .container .next {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .prev i, .container .next i{
+    display: flex;
+    background-color: #010101;
+    padding: 3rem;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    font-size: 1.1rem;
+    border-radius: 50%;
+    color: #fff;
+    box-shadow: 0px 3px 21px #f5f5f510;
+    cursor: pointer;
+    align-items: center;
+}

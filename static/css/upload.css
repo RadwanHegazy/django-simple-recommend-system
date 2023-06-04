@@ -1,0 +1,121 @@
+
+.container {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+
+}
+.main {
+    flex: 1;
+    margin: auto;
+    /* width: 400px; */
+    display: block;
+    overflow-y: auto;
+    padding: 2rem;
+}
+
+.main h1 {
+    font-size: 2rem;
+    width: 100%;
+    height: 60px;
+    text-align: right;
+
+}
+
+
+.up-btns {
+    display: flex;
+    height: 60px;
+    justify-content: flex-end;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.up-btns button {
+    font-family: Cairo,sans-serif;
+    width: 150px;
+    height: 50px;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.up-btns button:first-child {
+    color: #fff;
+    background-color: #39C41759;
+}
+
+.type {
+    padding-top: 1rem;
+    height: auto;
+}
+
+.type .data {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    height: auto;
+    justify-content: flex-end;
+    overflow-y: auto;
+}
+
+.in {
+    position: relative;
+}
+
+
+.in button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    border-radius: 8px;
+    left: 10px;
+    font-family: Cairo,sans-serif;
+    background-color: #ffffff10;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+}
+
+
+.genre {
+    color: #fff;
+    font-family: Cairo,sans-serif;
+    background-color: #ffffff35;
+    padding: 0.5rem 1rem;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.vid {
+    display: block;
+    flex: 1;
+    box-shadow: 0px 3px 21px #ffffff10;
+    margin-left: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.vid video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
